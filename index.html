@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>xoxoShop | Gadget & Accessories</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://kit.fontawesome.com/8efe212bd1.js" crossorigin="anonymous"></script>
+
+  <!--BootstrapCDN-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+</head>
+<body>
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+        <label class="logo">xoxo</label>
+        <ul>
+            <li><a href="front.html"><i class="fas fa-home"></i>Home</a></li>
+            <li><a class="active" href="index.html"><i class="fas fa-th-list"></i>Products</a></li>
+            <li><a href="#carttt"><i class="fas fa-shopping-cart"></i>Cart</a></li>
+        </ul>
+    </nav>
+<div class="container" ng-app="myApp" ng-controller="myCtrl">  
+  <div class="list">
+    <h2>Products</h2>
+    <div class="col-xs-8 col-md-6" ng-repeat="item in items">
+       <div class="product tumbnail thumbnail-3"><a href="#"><img ng-src="{{ item.img }}"></a>
+         <div class="caption">
+           <h4>{{ item.name }}</h4><span class="price">₱ {{ item.price | number:0 }}</span>
+         </div>
+         <div ng-click="addItem(item)" class="btn btn-sm btn-info"><i class="fa fa-shopping-cart"></i>Add to Cart</div>
+       </div>
+     </div>
+  </div>
+  <div class="scart col-md-6" id="carttt">
+    <h2>My Shopping Cart</h2>
+    <div ng-repeat="myItem in myItems | reverse">
+      <div>
+        <div class="prodName">{{ myItem.name }}</div>
+        <div class="prodPrice">₱ {{ myItem.price }}</div>
+        <div classs="prodCount">{{ myItem.count }}</div>
+      </div>
+    </div>
+    <span class="text-center" ng-show="myItems.length == 0">
+      Your shopping cart is empty.
+    </span>
+    <div class="clearfix"></div>
+    <span class="pull-right alert alert-success">Total Price: ₱ {{ !totalPrice ? "0" : totalPrice | number:0 }}</span>
+    <button ng-click="removeBasket()" data-toggle="modal" data-target="#exampleModal"ng-show="myItems.length > 0" class="pull-left alert alert-danger btn btn-primary">CHECK OUT</button>
+  </div>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">THANK YOU!</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        You have successfully checked out items.
+        <br>
+        Please wait for the arrival of your item.
+        <br>
+        <i style="float: right;">Love,
+        <br>
+        xoxoShop</i>
+        <br>
+        <br>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script><script src="./script.js"></script>
+
+</body>
+</html>
